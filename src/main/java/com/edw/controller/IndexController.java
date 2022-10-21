@@ -37,8 +37,6 @@ public class IndexController {
     public HashMap index(KeycloakAuthenticationToken authentication, HttpSession httpSession) {
         SimpleKeycloakAccount account = (SimpleKeycloakAccount) authentication.getDetails();
         AccessToken token = account.getKeycloakSecurityContext().getToken();
-
-        httpSession.setAttribute("username", token.getPreferredUsername());
         httpSession.setAttribute(token.getSessionId(), account.getKeycloakSecurityContext().getTokenString());
 
         return new HashMap(){{
